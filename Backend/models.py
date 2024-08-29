@@ -1,26 +1,31 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
-from database import Base
+from pydantic import BaseModel, EmailStr
 
-class Empresa(Base):
-    __tablename__ = "empresas"
+class EmpresaBase(BaseModel):
+    nombre: str
+    direccion: str
+    rut: str
+    telefono: str
 
-    id = Column(Integer, primary_key=True, index=True)
-    nombre = Column(String(255), nullable=False)
-    direccion = Column(String(255))
-    rut = Column(String(12), nullable=False, unique=True)
-    telefono = Column(String(20))
+class EmpresaCreate(EmpresaBase):
+    pass
 
-    empleados = relationship("Empleado", back_populates="empresa")
+class Empresa(EmpresaBase):
+    id: int
 
+    class Config:
+        orm_mode = True
 
-class Empleado(Base):
-    __tablename__ = "empleados"
+class EmpleadoBase(BaseModel):
+    nombre_completo: str
+    rut: str
+    email: EmailStr
+    id_empresa: int
 
-    id = Column(Integer, primary_key=True, index=True)
-    nombre_completo = Column(String(255), nullable=False)
-    rut = Column(String(12), nullable=False, unique=True)
-    email = Column(String(255), nullable=False, unique=True)
-    id_empresa = Column(Integer, ForeignKey('empresas.id'), nullable=True)
+class EmpleadoCreate(EmpleadoBase):
+    pass
 
-    empresa = relationship("Empresa", back_populates="empleados")
+class Empleado(EmpleadoBase):
+    id: int
+
+    class Config:
+        orm_mode = True
