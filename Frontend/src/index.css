@@ -66,3 +66,34 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/* Estilos para el modal */
+.modal-container {
+  background-color: #333333; /* Fondo oscuro para el modal */
+  color: #ffffff; /* Texto blanco */
+  border: 1px solid #444444; /* Borde gris oscuro */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+.modal-header {
+  background-color: #444444; /* Fondo del encabezado */
+  color: #ffffff; /* Texto blanco */
+}
+
+.modal-body {
+  background-color: #333333; /* Fondo del cuerpo del modal */
+  color: #ffffff; /* Texto blanco */
+}
+
+.modal-footer {
+  background-color: #444444; /* Fondo del pie del modal */
+  color: #ffffff; /* Texto blanco */
+}
+
+.modal-button {
+  background-color: #555555; /* Fondo de los botones */
+  color: #ffffff; /* Texto blanco */
+}
+
+.modal-button:hover {
+  background-color: #666666; /* Fondo de los botones al pasar el ratón */
+}
