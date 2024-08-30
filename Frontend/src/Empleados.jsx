@@ -17,7 +17,7 @@ function Empleados() {
   useEffect(() => {
     async function fetchEmpresas() {
       try {
-        const response = await axios.get('http://localhost:8000/empresas/');
+        const response = await axios.get('http://3.86.242.206/api/empresas/');
         setEmpresas(response.data);
       } catch (error) {
         console.error('Error fetching empresas:', error);
@@ -31,7 +31,7 @@ function Empleados() {
     if (selectedEmpresa) {
       async function fetchEmpleados() {
         try {
-          const response = await axios.get(`http://localhost:8000/empresas/${selectedEmpresa}/empleados`);
+          const response = await axios.get(`http://3.86.242.206/api/empresas/${selectedEmpresa}/empleados`);
           setEmpleados(response.data);
         } catch (error) {
           console.error('Error fetching empleados:', error);
@@ -59,10 +59,10 @@ function Empleados() {
   const handleAgregarEmpleado = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:8000/empleados/', { ...nuevoEmpleado, id_empresa: selectedEmpresa });
+      await axios.post('http://3.86.242.206/api/empleados/', { ...nuevoEmpleado, id_empresa: selectedEmpresa });
       
       
-      const response = await axios.get(`http://localhost:8000/empresas/${selectedEmpresa}/empleados`);
+      const response = await axios.get(`http://3.86.242.206/api/empresas/${selectedEmpresa}/empleados`);
       setEmpleados(response.data);
       
       

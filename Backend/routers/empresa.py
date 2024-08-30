@@ -6,7 +6,7 @@ from database import get_db
 
 router = APIRouter()
 
-@router.post("/empresas/", response_model=Empresa)
+@router.post("/api/empresas/", response_model=Empresa)
 def create_empresa(empresa: EmpresaCreate, db: Session = Depends(get_db)):
     try:
         db_empresa = crud_create_empresa(db=db, empresa=empresa)
@@ -17,18 +17,18 @@ def create_empresa(empresa: EmpresaCreate, db: Session = Depends(get_db)):
             detail=str(e)
         )
 
-@router.get("/empresas/{empresa_id}", response_model=Empresa)
+@router.get("/api/empresas/{empresa_id}", response_model=Empresa)
 def read_empresa(empresa_id: int, db: Session = Depends(get_db)):
     db_empresa = crud_get_empresa(db=db, empresa_id=empresa_id)
     if db_empresa is None:
         raise HTTPException(status_code=404, detail="Empresa not found")
     return db_empresa
 
-@router.get("/empresas/", response_model=list[Empresa])
+@router.get("/api/empresas/", response_model=list[Empresa])
 def read_empresas(db: Session = Depends(get_db)):
     return crud_get_empresas(db=db)
 
-@router.get("/empresas/{empresa_id}/empleados", response_model=list[Empleado])
+@router.get("/api/empresas/{empresa_id}/empleados", response_model=list[Empleado])
 def read_empleados_by_empresa(empresa_id: int, db: Session = Depends(get_db)):
     if not crud_get_empresa(db=db, empresa_id=empresa_id):
         raise HTTPException(status_code=404, detail="Empresa not found")

@@ -27,7 +27,7 @@ function Empresas() {
   }, []);
 
   const fetchEmpresas = () => {
-    axios.get('http://localhost:8000/empresas/')
+    axios.get('http://3.86.242.206/api/empresas/')
       .then(response => {
         setEmpresas(response.data);
       })
@@ -41,7 +41,7 @@ function Empresas() {
   };
 
   const handleSubmit = () => {
-    axios.post('http://localhost:8000/empresas/', company)
+    axios.post('http://3.86.242.206/api/empresas/', company)
       .then(response => {
         console.log('Empresa añadida:', response.data);
         setFormVisible(false);
