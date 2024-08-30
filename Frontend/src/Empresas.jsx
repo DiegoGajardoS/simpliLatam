@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   Card,
@@ -6,12 +6,19 @@ import {
   Typography,
   CardBody,
   CardFooter,
+  Input,
+  Button
 } from '@material-tailwind/react';
-import { AddCompanyDialog } from './AddCompanyDialog'; 
 
 function Empresas() {
   const [empresas, setEmpresas] = useState([]);
-  const buttonRef = useRef(null);
+  const [formVisible, setFormVisible] = useState(false);
+  const [company, setCompany] = useState({
+    nombre: '',
+    direccion: '',
+    rut: '',
+    telefono: '',
+  });
 
   useEffect(() => {
     fetchEmpresas();
@@ -27,8 +34,30 @@ function Empresas() {
       });
   };
 
-  const handleAddCompany = () => {
-    fetchEmpresas(); 
+  const handleChange = (e) => {
+    setCompany({ ...company, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = () => {
+    axios.post('http://localhost:8000/empresas/', company)
+      .then(response => {
+        console.log('Empresa añadida:', response.data);
+        setFormVisible(false);
+        fetchEmpresas(); 
+        resetForm(); 
+      })
+      .catch(error => {
+        console.error('Error al añadir la empresa:', error);
+      });
+  };
+
+  const resetForm = () => {
+    setCompany({
+      nombre: '',
+      direccion: '',
+      rut: '',
+      telefono: '',
+    });
   };
 
   return (
@@ -36,11 +65,9 @@ function Empresas() {
       <Card className="h-full w-full">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
-            <div>
-              <Typography variant="h5" color="blue-gray">
-                Listado de Empresas
-              </Typography>
-            </div>
+            <Typography variant="h5" color="blue-gray">
+              Listado de Empresas
+            </Typography>
           </div>
         </CardHeader>
         <CardBody className="overflow-scroll px-0">
@@ -114,7 +141,93 @@ function Empresas() {
           </table>
         </CardBody>
         <CardFooter>
-          <AddCompanyDialog onAddCompany={handleAddCompany} anchorRef={buttonRef} />
+          <Button
+            onClick={() => setFormVisible(!formVisible)}
+            variant="gradient"
+            className="bg-blue-500 hover:bg-blue-600"
+          >
+            {formVisible ? 'Cancelar' : 'Agregar Empresa'}
+          </Button>
+
+          {formVisible && (
+            <div className="mt-4 bg-gray-900 p-4 rounded-lg">
+              <Typography variant="h4" color="white" className="mb-4">
+                Agregar Nueva Empresa
+              </Typography>
+              <div className="space-y-4">
+                <div>
+                  <Typography variant="small" color="white" className="mb-2 text-left font-medium">
+                    Nombre
+                  </Typography>
+                  <Input
+                    color="gray"
+                    size="lg"
+                    placeholder="e.g. ABC Corp"
+                    name="nombre"
+                    value={company.nombre}
+                    onChange={handleChange}
+                    className="bg-gray-700 placeholder:text-gray-400 text-white focus:border-blue-500"
+                    containerProps={{ className: "!min-w-full" }}
+                    labelProps={{ className: "hidden" }}
+                  />
+                </div>
+                <div>
+                  <Typography variant="small" color="white" className="mb-2 text-left font-medium">
+                    Dirección
+                  </Typography>
+                  <Input
+                    color="gray"
+                    size="lg"
+                    placeholder="e.g. 123 Main St"
+                    name="direccion"
+                    value={company.direccion}
+                    onChange={handleChange}
+                    className="bg-gray-700 placeholder:text-gray-400 text-white focus:border-blue-500"
+                    containerProps={{ className: "!min-w-full" }}
+                    labelProps={{ className: "hidden" }}
+                  />
+                </div>
+                <div>
+                  <Typography variant="small" color="white" className="mb-2 text-left font-medium">
+                    RUT
+                  </Typography>
+                  <Input
+                    color="gray"
+                    size="lg"
+                    placeholder="e.g. 12345678-9"
+                    name="rut"
+                    value={company.rut}
+                    onChange={handleChange}
+                    className="bg-gray-700 placeholder:text-gray-400 text-white focus:border-blue-500"
+                    containerProps={{ className: "!min-w-full" }}
+                    labelProps={{ className: "hidden" }}
+                  />
+                </div>
+                <div>
+                  <Typography variant="small" color="white" className="mb-2 text-left font-medium">
+                    Teléfono
+                  </Typography>
+                  <Input
+                    color="gray"
+                    size="lg"
+                    placeholder="e.g. +123456789"
+                    name="telefono"
+                    value={company.telefono}
+                    onChange={handleChange}
+                    className="bg-gray-700 placeholder:text-gray-400 text-white focus:border-blue-500"
+                    containerProps={{ className: "!min-w-full" }}
+                    labelProps={{ className: "hidden" }}
+                  />
+                </div>
+                <Button
+                  className="ml-auto bg-blue-500 hover:bg-blue-600 text-white"
+                  onClick={handleSubmit}
+                >
+                  Agregar Empresa
+                </Button>
+              </div>
+            </div>
+          )}
         </CardFooter>
       </Card>
     </div>
