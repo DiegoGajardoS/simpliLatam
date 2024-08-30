@@ -24,3 +24,7 @@ def read_empleado(empleado_id: int, db: Session = Depends(get_db)):
     if db_empleado is None:
         raise HTTPException(status_code=404, detail="Empleado not found")
     return db_empleado
+
+@router.get("/print")
+def read_root():
+    return {"Hello": "World"}
