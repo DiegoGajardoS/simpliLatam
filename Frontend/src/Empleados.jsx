@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Empleados.css';
+import { Link } from 'react-router-dom';
 
 function Empleados() {
   const [empresas, setEmpresas] = useState([]);
@@ -77,6 +78,11 @@ function Empleados() {
 
   return (
     <div>
+      <header>
+          <nav>
+            <Link to="/">Home</Link>
+          </nav>
+        </header>
       <h2>Página de Empleados</h2>
 
       <label>
@@ -133,7 +139,7 @@ function Empleados() {
             />
           </label>
           <br />
-          <button type="submit">Agregar</button>
+          <button className="custom-button" type="submit">Agregar</button>
         </form>
       )}
     </div>

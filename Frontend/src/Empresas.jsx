@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Empresas.css';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -62,7 +63,13 @@ function Empresas() {
   };
 
   return (
+
     <div className="empresas-container">
+    <header>
+          <nav>
+            <Link to="/">Home</Link>
+          </nav>
+        </header>
       <Card className="h-full w-full">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">

@@ -22,10 +22,10 @@ function Home() {
     <div className="menu">
       <h1>Tu Empleado Perfecto</h1>
       <Link to="/empresas">
-        <button>Mis Empresas</button>
+        <button className="custom-button">Mis Empresas</button>
       </Link>
       <Link to="/empleados">
-        <button>Mis Empleados</button>
+        <button className="custom-button">Mis Empleados</button>
       </Link>
     </div>
   );

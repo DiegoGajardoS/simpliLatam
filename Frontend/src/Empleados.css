@@ -50,3 +50,11 @@ li {
   border-radius: 4px;
   color:#333;
 }
+.custom-button {
+  background-color: #0B5345; 
+  color: white; 
+}
+
+.custom-button:hover {
+  background-color: #0A3C2C; 
+}
