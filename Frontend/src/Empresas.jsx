@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Empresas.css';
 import {
   Card,
   CardHeader,
@@ -144,10 +145,11 @@ function Empresas() {
           <Button
             onClick={() => setFormVisible(!formVisible)}
             variant="gradient"
-            className="bg-blue-500 hover:bg-blue-600"
+            className="custom-button"
           >
             {formVisible ? 'Cancelar' : 'Agregar Empresa'}
           </Button>
+
 
           {formVisible && (
             <div className="mt-4 bg-gray-900 p-4 rounded-lg">
@@ -220,7 +222,7 @@ function Empresas() {
                   />
                 </div>
                 <Button
-                  className="ml-auto bg-blue-500 hover:bg-blue-600 text-white"
+                  className="custom-button"
                   onClick={handleSubmit}
                 >
                   Agregar Empresa
