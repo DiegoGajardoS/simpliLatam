@@ -11,6 +11,7 @@ Bienvenido a **SimpliLatam**. Este repositorio contiene dos proyectos:
 2. [Instalación](#instalación)
 3. [Uso](#uso)
 4. [Contacto](#contacto)
+5. [Host](#host)
 
 ## Requisitos
 
@@ -26,6 +27,11 @@ Bienvenido a **SimpliLatam**. Este repositorio contiene dos proyectos:
 
 ## Instalación
 
+- **Clonar el repositorio**:
+
+    ```bash
+    git clone https://github.com/DiegoGajardoS/simpliLatam.git
+    ```
 ### Backend
 
 1. Navega a la carpeta del backend:
@@ -33,13 +39,17 @@ Bienvenido a **SimpliLatam**. Este repositorio contiene dos proyectos:
    ```bash
    cd Backend
    ```
-2. Crea un entorno virtual e instala
-   ```python -m venv venv
-	  source venv/bin/activate  # En Windows: venv\Scripts\activate
-   ```
+2. **Crear un entorno virtual** (opcional pero recomendado):
+
+    ```bash
+    python -m venv env
+    source env/bin/activate  # Para Unix/macOS
+    .\env\Scripts\activate  # Para Windows
+    ```
 3. Instala dependencias
-	``` pip install -r requirements.txt
-   ```
+	```bash
+    pip install -r requirements.txt 
+    ```
 ### Frontend
 
 1. Navega a la carpeta del frontend:
@@ -47,9 +57,12 @@ Bienvenido a **SimpliLatam**. Este repositorio contiene dos proyectos:
    ```bash
    cd Frontend
    ```
+   
 2. Instala dependencias
-	``` npm install
+	```bash 
+   npm install 
    ```
+   
 
 ## Uso
 
@@ -57,17 +70,19 @@ Bienvenido a **SimpliLatam**. Este repositorio contiene dos proyectos:
 
 1. Ejecuta el servidor dentro del entorno creado 
 
-   ```uvicorn app.main:app --reload
+   ```bash 
+   uvicorn app.main:app --reload
    ```
 ### Frontend
 
 1. Ejecuta el servidor dentro de la carpeta Frontend
 
-   ```npm start
+   ```bash 
+   npm start
    ```
 
 
-### Instrucciones sobre cómo usar la aplicación después de la instalación.
+### Instrucciones sobre cómo usar la aplicación después de la instalación local.
 
 1. **Acceder a la API**:
 
@@ -88,3 +103,6 @@ Información de contacto para preguntas o soporte adicional.
 - **GitHub**: [github.com/DiegoG4Digital](https://github.com/DiegoGajardoS)
 
 
+## Host
+
+La aplicación está desplegada en AWS, utilizando EC2 y Nginx. Para acceder a la aplicación, visita `http://3.86.242.206` en tu navegador
