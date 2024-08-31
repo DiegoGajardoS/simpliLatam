@@ -100,7 +100,7 @@ Información de contacto para preguntas o soporte adicional.
 
 - **Autor**: Diego Gajardo
 - **Email**: diego.gajardo.s@usach.cl
-- **GitHub**: [github.com/DiegoG4Digital](https://github.com/DiegoGajardoS)
+- **GitHub**: [github.com/DiegoGajardoS](https://github.com/DiegoGajardoS)
 
 
 ## Host
